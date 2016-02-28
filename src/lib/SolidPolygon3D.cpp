@@ -9,6 +9,10 @@ void SolidPolygon3D::push_back(int x, int y, int z){
 	push_back(p);
 }
 
+bool SolidPolygon3D::operator<( const SolidPolygon3D& val ) const {
+	return this.getZ() < val.getZ();
+}
+
 SolidPolygon3D SolidPolygon3D::moveResult(Point3D delta){
 	return moveResult(delta.getX(), delta.getY(), delta.getZ());
 }
