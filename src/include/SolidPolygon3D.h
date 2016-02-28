@@ -11,6 +11,7 @@ class SolidPolygon3D: public std::vector<Point3D>{
 	SolidPolygon3D(std::vector<Point3D>::size_type s,Texture t = Texture::createSingleColorTexture(0,0,0,0)):std::vector<Point3D>(s){texture=t;};
 	SolidPolygon3D(std::vector<Point3D>& vec, Texture t = Texture::createSingleColorTexture(0,0,0,0)):std::vector<Point3D>(vec),texture(t){};
 
+	bool operator<( const SolidPolygon3D& val ) const;
 	SolidPolygon3D moveResult(Point3D delta);
 	SolidPolygon3D moveResult(int deltax, int deltay, int deltaz);
 	SolidPolygon3D scaleResult(float scale);
