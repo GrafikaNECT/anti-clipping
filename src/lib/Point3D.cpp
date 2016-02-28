@@ -1,4 +1,5 @@
 #include "../include/Point3D.h"
+#include "../include/Point.h"
 #include <math.h>
 #include <iostream>
 
@@ -114,5 +115,14 @@ Point3D Point3D::mirrorResult(char axis) const{
 		Point3D p(-x,-y,z);	
 	}
 	
+	return p;
+}
+
+Point Point3D::convert3DTo2D (Point3D eye) {
+	Point p;
+	int sx = (eye.getZ() * (x-eye.getX())) / (eye.getZ() + z) + eye.getX();
+	int sy = (eye.getZ() * (y-eye.getY())) / (eye.getZ() + z) + eye.getY();
+	p.setX(sx);
+	p.setY(sy);
 	return p;
 }

@@ -1,7 +1,7 @@
 #ifndef Point3D_h
 #define Point3D_h
 
-using namespace std;
+#include "Point.h"
 
 class Point3D {
 	int x, y;
@@ -37,6 +37,8 @@ public:
 
 	Point3D rotationResult(float deltaDegree,char axis) const;
 	Point3D mirrorResult(char axis) const;
+
+	Point convert3DTo2D (Point3D eye);
 };
 
 #endif // Point3D_H
