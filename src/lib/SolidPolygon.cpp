@@ -75,7 +75,7 @@ void SolidPolygon::draw(){
 	SolidPolygon& p = *this; //(biar gak repot ganti semua)
 	//coba fill pakai Point-in-SolidPolygon http://alienryderflex.com/SolidPolygon_fill/
 	//TODO tukar loop x dan y supaya cepat (mungkin, cobain)
-	for (int y=0;y<getYRes();y++){
+	for (int y=0;y<Printer::getYRes();y++){
 		//ambil intersection dengan garis
 		std::vector<int> intersections;
 		for (int i=0;i<p.size()-1;i++){

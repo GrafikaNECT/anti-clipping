@@ -25,22 +25,30 @@ int Line::getX2() {return p2.getX();}
 int Line::getY2() {return p2.getY();}
 
 // Operations
+void Line::move(Point delta){move(delta.getX(),delta.getY());};
 void Line::move(int dx, int dy) {
-	p1.translate(dx,dy);
-	p2.translate(dx,dy);
+	p1.move(dx,dy);
+	p2.move(dx,dy);
+	texture = texture.hasilTranslasi(dx,dy);
 }
 void Line::scale(float s) {
 	p1.scale(s);
 	p2.scale(s);
+	texture = texture.hasilSkala(s);
+}
+void Line::scale(float sx, float sy){
+	p1.scale(sx,sy);
+	p2.scale(sx,sy);
+	texture = texture.hasilSkala(sx,sy);
 }
 void Line::scale(float s, int x, int y) {
 	p1.scale(s,x,y);
 	p2.scale(s,x,y);
 }
-void Line::scale(float s, Point p) {
+/*void Line::scale(float s, Point p) {
 	p1.scale(s,p);
 	p2.scale(s,p);
-}
+}*/
 void Line::rotate(float t) {
 	p1.rotate(t);
 	p2.rotate(t);
@@ -133,9 +141,9 @@ Line Line::clip(Point min, Point max){
 		}
 	}
 	if (accept) {
-        return Line(x1,y1,x2,y2);
+        return Line(x1,y1,x2,y2,texture);
 	} else{
-		return Line(-1,-1,-1,-1);
+		return Line(-1,-1,-1,-1, texture);
 	}
 }
 
@@ -152,15 +160,15 @@ void Line::draw() {
 	
 	if (x1==x2) {	// Vertikal
 		if (y1<=y2) {
-			for (i=y1;i<=y2;i++) Printer::drawPix(x1,i,255,255,255,255);
+			for (i=y1;i<=y2;i++) Printer::drawPix(x1,i,255,0,0,255);
 		} else {
-			for (i=y2;i<=y1;i++) Printer::drawPix(x1,i,255,255,255,255);
+			for (i=y2;i<=y1;i++) Printer::drawPix(x1,i,255,0,0,255);
 		}
 	} else if (y1==y2) {	// Horizontal
 		if (x1<=x2) {
-			for (i=x1;i<=x2;i++) Printer::drawPix(i,y1,255,255,255,255);
+			for (i=x1;i<=x2;i++) Printer::drawPix(i,y1,255,0,0,255);
 		} else {
-			for (i=x2;i<=x1;i++) Printer::drawPix(i,y1,255,255,255,255);
+			for (i=x2;i<=x1;i++) Printer::drawPix(i,y1,255,0,0,255);
 		}
 	} else {
 		// Check for quadrant position of p2
@@ -180,10 +188,10 @@ void Line::draw() {
 		i = 0;
 		j = 0;
 		while (cx*i<=cx*dx) {
-			Printer::drawPix(x1+i,y1+j,255,255,255,255);
+			texture.draw(x1+i,y1+j);
 			while (i*dy*cs>j*dx*cs) {
 				j = j+cy;
-				Printer::drawPix(x1+i,y1+j,255,255,255,255);
+				texture.draw(x1+i,y1+j);
 			}
 			i = i+cx;
 		}

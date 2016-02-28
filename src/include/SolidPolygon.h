@@ -33,5 +33,3 @@ class SolidPolygon: public std::vector<Point>{
 };
 
 #endif
-
-#endif

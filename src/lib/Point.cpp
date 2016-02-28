@@ -3,71 +3,71 @@
 #include <iostream>
 
 // Constructor
-point::point(int _x, int _y) {
+Point::Point(int _x, int _y) {
 	x = _x;
 	y = _y;
 }
 
 // Getter
-int point::getX() const {
+int Point::getX() const {
 	return x;
 }
-int point::getY() const {
+int Point::getY() const {
 	return y;
 }
 
 // Setter
-void point::setX(int _x) {
+void Point::setX(int _x) {
 	x = _x;
 }
-void point::setY(int _y) {
+void Point::setY(int _y) {
 	y = _y;
 }
 
 // Operations
-void point::move(int dx, int dy) {
+void Point::move(int dx, int dy) {
 	x = x + dx;
 	y = y + dy;
 }
-void point::scale(float s) {
+void Point::scale(float s) {
 	x = (int)x*s;
 	y = (int)y*s;
 }
-void point::scale(float sx, float sy){
+void Point::scale(float sx, float sy){
 	x*=sx;
 	y*=sy;
 }
-void point::scale(float s, int cx, int cy) {
+void Point::scale(float s, int cx, int cy) {
 	move(-cx,-cy);
 	scale(s);
 	move(cx,cy);
 }
-void point::scale(float s, point& cp) {
+void Point::scale(float s, Point& cp) {
 	scale(s,cp.getX(),cp.getY());
 }
-void point::rotate(float t) {
+void Point::rotate(float t) {
 	int x1 = round(cos(t)*x - sin(t)*y);
 	int y1 = round(sin(t)*x + cos(t)*y);
 	x = x1;
 	y = y1;
 }
-void point::rotate(float t, int cx, int cy) {
+void Point::rotate(float t, int cx, int cy) {
 	move(-cx,-cy);
 	rotate(t);
 	move(cx,cy);
 }
 
-void point::rotate(float t, const point& cp){
+void Point::rotate(float t, const Point& cp){
 	rotate(t,cp.getX(),cp.getY());
 }
 
-point point::hasilRotasi(float deltaDegree) const{
+Point Point::hasilRotasi(float deltaDegree) const{
 	float deltaRad = deltaDegree*M_PI/180.0;
-	point p((double)x*cos(deltaRad)-(double)y*sin(deltaRad),(double)x*sin(deltaRad)+(double)y*cos(deltaRad));
+	Point p((double)x*cos(deltaRad)-(double)y*sin(deltaRad),(double)x*sin(deltaRad)+(double)y*cos(deltaRad));
 	return p;
 }
 
-point point::hasilMirror00() const{
-	point p(-x,-y);
+Point Point::hasilMirror00() const{
+	Point p(-x,-y);
 	return p;
 }

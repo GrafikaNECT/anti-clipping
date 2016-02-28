@@ -26,7 +26,9 @@ public:
 	
 	// Operations
 	void move(int dx, int dy);
+	void move(Point delta);
 	void scale(float s);
+	void scale(float sx, float sy);
 	void scale(float s, int x, int y);
 	void scale(float s, Point p);
 	void rotate(float t);
@@ -39,13 +41,14 @@ public:
 	// Graphics
 	void draw();
 
-private:
-	//UNTUK CLIPPING
-	static const int INSIDE = 0; // 0000
-	static const int LEFT = 1;   // 0001
-	static const int RIGHT = 2;  // 0010                      
-	static const int BOTTOM = 4; // 0100
-	static const int TOP = 8;    // 1000
+	private:
+
+//UNTUK CLIPPING
+static const int INSIDE = 0; // 0000
+static const int LEFT = 1;   // 0001
+static const int RIGHT = 2;  // 0010                      
+static const int BOTTOM = 4; // 0100
+static const int TOP = 8;    // 1000
 
 };
 
