@@ -36,7 +36,7 @@ public:
 		return p;
 	};
 
-	Point3D rotationResult(float deltaDegree,char axis) const;
+	Point3D rotationResult(float deltaDegree, char axis) const;
 	Point3D mirrorResult(char axis) const;
 
 	Point projectionResult(Point3D eye);

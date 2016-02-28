@@ -16,9 +16,9 @@ class SolidPolygon3D: public std::vector<Point3D>{
 	SolidPolygon3D moveResult(int deltax, int deltay, int deltaz);
 	SolidPolygon3D scaleResult(float scale);
 
-	SolidPolygon3D scaleResult(float scaleX, float scaleY);
-	SolidPolygon3D rotationResult(float deltaDegree);
-	SolidPolygon3D rotationResult(float deltaDegree, Point3D poros);
+	SolidPolygon3D scaleResult(float scaleX, float scaleY, float scaleZ);
+	SolidPolygon3D rotationResult(float deltaDegree, char axis);
+	SolidPolygon3D rotationResult(float deltaDegree, Point3D poros, char axis);
 
 	void push_back(int x, int y, int z); 
 	void push_back(const Point3D& p){std::vector<Point3D>::push_back(p);};

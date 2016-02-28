@@ -10,7 +10,21 @@ void SolidPolygon3D::push_back(int x, int y, int z){
 }
 
 bool SolidPolygon3D::operator<( const SolidPolygon3D& val ) const {
-	return this.getZ() < val.getZ();
+	int maxthis = this->at(0).getZ();
+	int maxval = val.at(0).getZ();
+
+	for(int i=1; i<this->size(); i++) {
+		if (maxthis <= this->at(i).getZ()) {
+			maxthis = this->at(i).getZ();
+		}
+	}
+
+	for(int i=1; i<val.size(); i++) {
+		if (maxval <= val.at(i).getZ()) {
+			maxval = val.at(i).getZ();
+		}
+	}
+	return maxthis < maxval;
 }
 
 SolidPolygon3D SolidPolygon3D::moveResult(Point3D delta){
@@ -22,7 +36,7 @@ SolidPolygon3D SolidPolygon3D::moveResult(int deltax, int deltay, int deltaz){
 	for (int i=0;i<std::vector<Point3D>::size();i++){
 		retval[i].move(deltax,deltay,deltaz);
 	}
-	retval.texture = texture.hasilTranslasi(deltax, deltay); //TODO: Ga ngerti dengan perteksturan
+	retval.texture = texture.translateResult(deltax, deltay); //TODO: Ga ngerti dengan perteksturan
 	return retval;
 }
 SolidPolygon3D SolidPolygon3D::scaleResult(float scale){
@@ -49,17 +63,17 @@ SolidPolygon3D SolidPolygon3D::scaleResult(float scaleX, float scaleY, float sca
 	return retval;
 }
 
-SolidPolygon3D SolidPolygon3D::rotationResult(float deltaDegree){
+SolidPolygon3D SolidPolygon3D::rotationResult(float deltaDegree, char axis){
 	SolidPolygon3D retval(std::vector<Point3D>::size(),texture);
 	for (int i=0;i<std::vector<Point3D>::size();i++){
 		const Point3D& p = at(i);
-		retval[i]=p.rotationResult(deltaDegree);
+		retval[i]=p.rotationResult(deltaDegree, axis);
 	}
 	return retval;	
 }
 
-SolidPolygon3D SolidPolygon3D::rotationResult(float deltaDegree, Point3D poros){
-	SolidPolygon3D tmp1 = moveResult(poros.hasilMirror00());
-	SolidPolygon3D tmp2 = tmp1.rotationResult(deltaDegree);
+SolidPolygon3D SolidPolygon3D::rotationResult(float deltaDegree, Point3D poros, char axis){
+	SolidPolygon3D tmp1 = moveResult(poros.mirrorResult(axis));
+	SolidPolygon3D tmp2 = tmp1.rotationResult(deltaDegree, axis);
 	return tmp2.moveResult(poros);
 }

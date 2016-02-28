@@ -18,6 +18,7 @@ private:
 std::vector<SolidPolygon3D> Model3D::orderSolidPolygon() {
 	std::vector<SolidPolygon3D> retval = *this;
 	std::sort( retval.begin(), retval.end() );
+	return retval;
 }
 
 #endif
