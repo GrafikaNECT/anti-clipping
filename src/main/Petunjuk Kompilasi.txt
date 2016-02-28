@@ -1,0 +1,1 @@
+g++ -o test-solidpolygon mSolidPolygon.cpp ../lib/Printer.cpp ../lib/SolidPolygon.cpp ../lib/Texture.cpp ../lib/Point.cpp ../lib/Line.cpp -fpermissive

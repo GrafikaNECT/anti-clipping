@@ -1,11 +1,9 @@
 #ifndef Point_h
 #define Point_h
 
-#include "Transformable.h"
-
 using namespace std;
 
-class Point:public Transformable{
+class Point{
 public:
 	// Constructor
 	Point(int _x, int _y);

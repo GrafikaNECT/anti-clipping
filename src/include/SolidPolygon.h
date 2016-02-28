@@ -9,6 +9,8 @@ class SolidPolygon: public std::vector<Point>{
 	public:
 	SolidPolygon(Texture t = Texture::createSingleColorTexture(0,0,0,0)):std::vector<Point>(){texture=t;};
 	SolidPolygon(std::vector<Point>::size_type s,Texture t = Texture::createSingleColorTexture(0,0,0,0)):std::vector<Point>(s){texture=t;};
+	SolidPolygon(std::vector<Point>& vec, Texture t = Texture::createSingleColorTexture(0,0,0,0)):std::vector<Point>(vec),texture(t){};
+
 	SolidPolygon hasilGeser(Point delta);
 	SolidPolygon hasilGeser(int deltax, int deltay);
 	SolidPolygon hasilPerbesar(float scale);
