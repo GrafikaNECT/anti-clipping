@@ -24,6 +24,12 @@ int Point3D::getZ() const {
 }
 
 // Setter
+void Point3D::setXYZ(int _x,int _y, int _z) {
+	x = _x;
+	y = _y;
+	z = _z;
+}
+
 void Point3D::setX(int _x) {
 	x = _x;
 }
@@ -96,29 +102,31 @@ void Point3D::rotate(float t, const Point3D& cp, char axis){
 
 Point3D Point3D::rotationResult(float deltaDegree, char axis) const{
 	float deltaRad = deltaDegree*M_PI/180.0;
+	Point3D p;
 	if (axis == 'x') {
-		Point3D p(x,(double)y*cos(deltaRad)-(double)z*sin(deltaRad),(double)y*sin(deltaRad)+(double)z*cos(deltaRad));	
+		p.setXYZ(x,(double)y*cos(deltaRad)-(double)z*sin(deltaRad),(double)y*sin(deltaRad)+(double)z*cos(deltaRad));	
 	} else if (axis == 'y') {
-		Point3D p((double)z*cos(deltaRad)-(double)x*sin(deltaRad),y,(double)z*sin(deltaRad)+(double)x*cos(deltaRad));	
+		p.setXYZ((double)z*cos(deltaRad)-(double)x*sin(deltaRad),y,(double)z*sin(deltaRad)+(double)x*cos(deltaRad));	
 	} else if (axis == 'z') {
-		Point3D p((double)x*cos(deltaRad)-(double)y*sin(deltaRad),(double)x*sin(deltaRad)+(double)y*cos(deltaRad),z);	
+		p.setXYZ((double)x*cos(deltaRad)-(double)y*sin(deltaRad),(double)x*sin(deltaRad)+(double)y*cos(deltaRad),z);	
 	}
 	return p;
 }
 
 Point3D Point3D::mirrorResult(char axis) const{
+	Point3D p;
 	if (axis == 'x') {
-		Point3D p(x,-y,-z);
+		p.setXYZ(x,-y,-z);
 	} else if (axis == 'y')	{
-		Point3D p(-x,y,-z);
+		p.setXYZ(-x,y,-z);
 	} else if (axis == 'z') {
-		Point3D p(-x,-y,z);	
+		p.setXYZ(-x,-y,z);	
 	}
 	
 	return p;
 }
 
-Point Point3D::convert3DTo2D (Point3D eye) {
+Point Point3D::projectionResult (Point3D eye) {
 	Point p;
 	int sx = (eye.getZ() * (x-eye.getX())) / (eye.getZ() + z) + eye.getX();
 	int sy = (eye.getZ() * (y-eye.getY())) / (eye.getZ() + z) + eye.getY();

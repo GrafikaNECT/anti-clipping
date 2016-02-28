@@ -4,7 +4,7 @@
 #include "Point.h"
 
 class Point3D {
-	int x, y;
+	int x, y, z;
 public:
 	// Constructor
 	Point3D(int _x, int _y, int _z);
@@ -16,6 +16,7 @@ public:
 	int getZ() const;
 	
 	// Setter
+	void setXYZ(int _x,int _y, int _z);
 	void setX(int _x);
 	void setY(int _y);
 	void setZ(int _z);
@@ -38,7 +39,7 @@ public:
 	Point3D rotationResult(float deltaDegree,char axis) const;
 	Point3D mirrorResult(char axis) const;
 
-	Point convert3DTo2D (Point3D eye);
+	Point projectionResult(Point3D eye);
 };
 
 #endif // Point3D_H
