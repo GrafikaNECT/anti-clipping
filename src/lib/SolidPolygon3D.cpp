@@ -9,18 +9,19 @@ void SolidPolygon3D::push_back(int x, int y, int z){
 	push_back(p);
 }
 
-SolidPolygon3D SolidPolygon3D::hasilGeser(Point3D delta){
-	return hasilGeser(delta.getX(), delta.getY(), delta.getZ());
+SolidPolygon3D SolidPolygon3D::moveResult(Point3D delta){
+	return moveResult(delta.getX(), delta.getY(), delta.getZ());
 }
 
-SolidPolygon3D SolidPolygon3D::hasilGeser(int deltax, int deltay, int deltaz){
+SolidPolygon3D SolidPolygon3D::moveResult(int deltax, int deltay, int deltaz){
 	SolidPolygon3D retval = *this;
 	for (int i=0;i<std::vector<Point3D>::size();i++){
-		retval[i].scale(deltax,deltay,deltaz);
+		retval[i].move(deltax,deltay,deltaz);
 	}
+	retval.texture = texture.hasilTranslasi(deltax, deltay); //TODO: Ga ngerti dengan perteksturan
 	return retval;
 }
-SolidPolygon3D SolidPolygon3D::hasilPerbesar(float scale){
+SolidPolygon3D SolidPolygon3D::scaleResult(float scale){
 	SolidPolygon3D retval = *this;
 	for (int i=0;i<std::vector<Point3D>::size();i++){
 		Point3D& p = retval[i];
@@ -28,10 +29,11 @@ SolidPolygon3D SolidPolygon3D::hasilPerbesar(float scale){
 		p.setY(p.getY()*scale);
 		p.setZ(p.getZ()*scale);
 	}
+	retval.texture = texture.scaleResult(scale); //TODO: Ga ngerti ini harus diapain
 	return retval;
 }
 
-SolidPolygon3D SolidPolygon3D::hasilSkala(float scaleX, float scaleY, float scaleZ){
+SolidPolygon3D SolidPolygon3D::scaleResult(float scaleX, float scaleY, float scaleZ){
 	SolidPolygon3D retval = *this;
 	for (int i=0;i<std::vector<Point3D>::size();i++){
 		Point3D& p = retval[i];
@@ -39,21 +41,21 @@ SolidPolygon3D SolidPolygon3D::hasilSkala(float scaleX, float scaleY, float scal
 		p.setY(p.getY()*scaleY);
 		p.setZ(p.getZ()*scaleZ);
 	}
+	retval.texture = texture.scaleResult(scaleX,scaleY); //TODO: Apalagi ini... Ini apaan ya?
 	return retval;
 }
 
-SolidPolygon3D SolidPolygon3D::hasilRotasi(float deltaDegree){
+SolidPolygon3D SolidPolygon3D::rotationResult(float deltaDegree){
 	SolidPolygon3D retval(std::vector<Point3D>::size(),texture);
 	for (int i=0;i<std::vector<Point3D>::size();i++){
 		const Point3D& p = at(i);
-		retval[i]=p.hasilRotasi(deltaDegree);
+		retval[i]=p.rotationResult(deltaDegree);
 	}
 	return retval;	
 }
 
-// TODO: ROTASI
-SolidPolygon3D SolidPolygon3D::hasilRotasi(float deltaDegree, Point3D poros){
-	SolidPolygon3D tmp1 = hasilGeser(poros.hasilMirror00());
-	SolidPolygon3D tmp2 = tmp1.hasilRotasi(deltaDegree);
-	return tmp2.hasilGeser(poros);
+SolidPolygon3D SolidPolygon3D::rotationResult(float deltaDegree, Point3D poros){
+	SolidPolygon3D tmp1 = moveResult(poros.hasilMirror00());
+	SolidPolygon3D tmp2 = tmp1.rotationResult(deltaDegree);
+	return tmp2.moveResult(poros);
 }
