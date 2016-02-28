@@ -16,8 +16,9 @@ SolidPolygon SolidPolygon::hasilGeser(Point delta){
 SolidPolygon SolidPolygon::hasilGeser(int deltax, int deltay){
 	SolidPolygon retval = *this;
 	for (int i=0;i<std::vector<Point>::size();i++){
-		retval[i].scale(deltax,deltay);
+		retval[i].geser(deltax,deltay);
 	}
+	retval.texture = texture.hasilTranslasi(deltax, deltay);
 	return retval;
 }
 SolidPolygon SolidPolygon::hasilPerbesar(float scale){
@@ -27,6 +28,7 @@ SolidPolygon SolidPolygon::hasilPerbesar(float scale){
 		p.setX(p.getX()*scale);
 		p.setY(p.getY()*scale);
 	}
+	retval.texture = texture.hasilSkala(scale);
 	return retval;
 }
 
@@ -37,6 +39,7 @@ SolidPolygon SolidPolygon::hasilSkala(float scaleX, float scaleY){
 		p.setX(p.getX()*scaleX);
 		p.setY(p.getY()*scaleY);
 	}
+	retval.texture = texture.hasilSkala(scaleX,scaleY);
 	return retval;
 }
 
@@ -72,7 +75,7 @@ void SolidPolygon::draw(){
 	SolidPolygon& p = *this; //(biar gak repot ganti semua)
 	//coba fill pakai Point-in-SolidPolygon http://alienryderflex.com/SolidPolygon_fill/
 	//TODO tukar loop x dan y supaya cepat (mungkin, cobain)
-	for (int y=0;y<Printer::getYRes();y++){
+	for (int y=0;y<getYRes();y++){
 		//ambil intersection dengan garis
 		std::vector<int> intersections;
 		for (int i=0;i<p.size()-1;i++){
