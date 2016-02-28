@@ -3,79 +3,71 @@
 #include <iostream>
 
 // Constructor
-Point::Point(int _x, int _y) {
+point::point(int _x, int _y) {
 	x = _x;
 	y = _y;
 }
 
 // Getter
-int Point::getX() const {
+int point::getX() const {
 	return x;
 }
-
-int Point::getY() const {
+int point::getY() const {
 	return y;
 }
 
 // Setter
-void Point::setX(int _x) {
+void point::setX(int _x) {
 	x = _x;
 }
-
-void Point::setY(int _y) {
+void point::setY(int _y) {
 	y = _y;
 }
 
 // Operations
-void Point::rotate(float rotateDeg) {
-	int x1 = round(cos(rotateDeg)*x - sin(rotateDeg)*y);
-	int y1 = round(sin(rotateDeg)*x + cos(rotateDeg)*y);
-	x = x1;
-	y = y1;
+void point::move(int dx, int dy) {
+	x = x + dx;
+	y = y + dy;
 }
-
-void Point::rotate(float t, int cx, int cy) {
-	translate(-cx,-cy);
-	rotate(t);
-	translate(cx,cy);
-}
-
-void Point::rotate(float t, const Point& cp) {
-	rotate(t,cp.getX(),cp.getY());
-}
-
-void Point::scale(float s) {
+void point::scale(float s) {
 	x = (int)x*s;
 	y = (int)y*s;
 }
-
-void Point::scale(float scaleX, float scaleY) {
-	x = (int) x*scaleX;
-	y = (int) y*scaleY;
+void point::scale(float sx, float sy){
+	x*=sx;
+	y*=sy;
 }
-
-void Point::scale(float s, int cx, int cy) {
-	translate(-cx,-cy);
+void point::scale(float s, int cx, int cy) {
+	move(-cx,-cy);
 	scale(s);
-	translate(cx,cy);
+	move(cx,cy);
 }
-
-void Point::scale(float s, Point& cp) {
+void point::scale(float s, point& cp) {
 	scale(s,cp.getX(),cp.getY());
 }
-
-void Point::translate(int deltaX, int deltaY) {
-	x = x * deltaX;
-	y = y * deltaY;
+void point::rotate(float t) {
+	int x1 = round(cos(t)*x - sin(t)*y);
+	int y1 = round(sin(t)*x + cos(t)*y);
+	x = x1;
+	y = y1;
+}
+void point::rotate(float t, int cx, int cy) {
+	move(-cx,-cy);
+	rotate(t);
+	move(cx,cy);
 }
 
-Point Point::hasilRotasi(float deltaDegree) const{
+void point::rotate(float t, const point& cp){
+	rotate(t,cp.getX(),cp.getY());
+}
+
+point point::hasilRotasi(float deltaDegree) const{
 	float deltaRad = deltaDegree*M_PI/180.0;
-	Point p((double)x*cos(deltaRad)-(double)y*sin(deltaRad),(double)x*sin(deltaRad)+(double)y*cos(deltaRad));
+	point p((double)x*cos(deltaRad)-(double)y*sin(deltaRad),(double)x*sin(deltaRad)+(double)y*cos(deltaRad));
 	return p;
 }
 
-Point Point::hasilMirror00() const{
-	Point p(-x,-y);
+point point::hasilMirror00() const{
+	point p(-x,-y);
 	return p;
 }
