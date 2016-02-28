@@ -13,13 +13,13 @@ int main () {
 
 	p.setXYZ(8,8,20);
 	frontA.setXYZ(5,5,10);
-	frontB.setXYZ(5,10,10);
-	frontC.setXYZ(10,5,10);
-	frontD.setXYZ(10,10,10);
+	frontB.setXYZ(5,11,10);
+	frontC.setXYZ(11,5,10);
+	frontD.setXYZ(11,11,10);
 	backA.setXYZ(5,5,0);
-	backB.setXYZ(5,10,0);
-	backC.setXYZ(10,5,0);
-	backD.setXYZ(10,10,0);
+	backB.setXYZ(5,11,0);
+	backC.setXYZ(11,5,0);
+	backD.setXYZ(11,11,0);
 
 
 	cout << frontA.projectionResult(p).getX() << "," << frontA.projectionResult(p).getY() << endl; 
