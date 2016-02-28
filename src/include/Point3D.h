@@ -36,7 +36,7 @@ public:
 	};
 
 	Point3D rotationResult(float deltaDegree,char axis) const;
-	Point3D hasilMirror00(char axis) const;
+	Point3D mirrorResult(char axis) const;
 };
 
 #endif // Point3D_H

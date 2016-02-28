@@ -105,7 +105,7 @@ Point3D Point3D::rotationResult(float deltaDegree, char axis) const{
 	return p;
 }
 
-Point3D Point3D::hasilMirror00(char axis) const{
+Point3D Point3D::mirrorResult(char axis) const{
 	if (axis == 'x') {
 		Point3D p(x,-y,-z);
 	} else if (axis == 'y')	{
