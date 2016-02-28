@@ -9,50 +9,53 @@ void SolidPolygon::push_back(int x, int y){
 	push_back(p);
 }
 
-SolidPolygon SolidPolygon::hasilGeser(Point delta){
-	return hasilGeser(delta.getX(), delta.getY());
+SolidPolygon SolidPolygon::moveResult(Point delta){
+	return moveResult(delta.getX(), delta.getY());
 }
 
-SolidPolygon SolidPolygon::hasilGeser(int deltax, int deltay){
+SolidPolygon SolidPolygon::moveResult(int deltax, int deltay){
 	SolidPolygon retval = *this;
 	for (int i=0;i<std::vector<Point>::size();i++){
-		retval[i].scale(deltax,deltay);
+		retval[i].move(deltax,deltay);
 	}
+	retval.texture = texture.hasilTranslasi(deltax, deltay);
 	return retval;
 }
-SolidPolygon SolidPolygon::hasilPerbesar(float scale){
+SolidPolygon SolidPolygon::scaleResult(float scale){
 	SolidPolygon retval = *this;
 	for (int i=0;i<std::vector<Point>::size();i++){
 		Point& p = retval[i];
 		p.setX(p.getX()*scale);
 		p.setY(p.getY()*scale);
 	}
+	retval.texture = texture.scaleResult(scale);
 	return retval;
 }
 
-SolidPolygon SolidPolygon::hasilSkala(float scaleX, float scaleY){
+SolidPolygon SolidPolygon::scaleResult(float scaleX, float scaleY){
 	SolidPolygon retval = *this;
 	for (int i=0;i<std::vector<Point>::size();i++){
 		Point& p = retval[i];
 		p.setX(p.getX()*scaleX);
 		p.setY(p.getY()*scaleY);
 	}
+	retval.texture = texture.scaleResult(scaleX,scaleY);
 	return retval;
 }
 
-SolidPolygon SolidPolygon::hasilRotasi(float deltaDegree){
+SolidPolygon SolidPolygon::rotationResult(float deltaDegree){
 	SolidPolygon retval(std::vector<Point>::size(),texture);
 	for (int i=0;i<std::vector<Point>::size();i++){
 		const Point& p = at(i);
-		retval[i]=p.hasilRotasi(deltaDegree);
+		retval[i]=p.rotationResult(deltaDegree);
 	}
 	return retval;	
 }
 
-SolidPolygon SolidPolygon::hasilRotasi(float deltaDegree, Point poros){
-	SolidPolygon tmp1 = hasilGeser(poros.hasilMirror00());
-	SolidPolygon tmp2 = tmp1.hasilRotasi(deltaDegree);
-	return tmp2.hasilGeser(poros);
+SolidPolygon SolidPolygon::rotationResult(float deltaDegree, Point poros){
+	SolidPolygon tmp1 = moveResult(poros.hasilMirror00());
+	SolidPolygon tmp2 = tmp1.rotationResult(deltaDegree);
+	return tmp2.moveResult(poros);
 }
 
 void SolidPolygon::draw(){
