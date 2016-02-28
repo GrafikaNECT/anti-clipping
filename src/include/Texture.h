@@ -31,9 +31,9 @@ class Texture{
 	void draw(int x, int y);
 
 	//transformasi
-	Texture hasilSkala(float scale){return hasilSkala(scale, scale);}
-	Texture hasilSkala(float xScale, float yScale);
-	Texture hasilTranslasi(int deltaX, int deltaY);
+	Texture scaleResult(float scale){return scaleResult(scale, scale);}
+	Texture scaleResult(float xScale, float yScale);
+	Texture translateResult(int deltaX, int deltaY);
 
 	private:
 	//ukuran vektor R, G, B, A selalu sama

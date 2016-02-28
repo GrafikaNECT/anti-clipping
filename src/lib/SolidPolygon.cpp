@@ -18,7 +18,7 @@ SolidPolygon SolidPolygon::moveResult(int deltax, int deltay){
 	for (int i=0;i<std::vector<Point>::size();i++){
 		retval[i].move(deltax,deltay);
 	}
-	retval.texture = texture.hasilTranslasi(deltax, deltay);
+	retval.texture = texture.translateResult(deltax, deltay);
 	return retval;
 }
 SolidPolygon SolidPolygon::scaleResult(float scale){
