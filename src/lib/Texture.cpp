@@ -57,7 +57,7 @@ void Texture::draw(int x,int y){
 }
 
 	//transformasi
-Texture Texture::hasilSkala(float xScale, float yScale){
+Texture Texture::scaleResult(float xScale, float yScale){
 	int _sizeY = sizeY*yScale;
 	int _sizeX = sizeX*yScale;
 	if (_sizeY==0)
@@ -84,7 +84,7 @@ Texture Texture::hasilSkala(float xScale, float yScale){
 	}
 	return Texture(_R,_G,_B,_A,sizeX,sizeY);
 }
-Texture Texture::hasilTranslasi(int deltaX, int deltaY){
+Texture Texture::translateResult(int deltaX, int deltaY){
 	std::vector<std::vector<int> > _R(sizeY);
 	std::vector<std::vector<int> > _G(sizeY);
 	std::vector<std::vector<int> > _B(sizeY);

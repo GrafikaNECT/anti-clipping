@@ -28,12 +28,11 @@ public:
 	void rotate(float t, int cx, int cy);
 	void rotate(float t, const Point& cp);
 
-	void geser(int _x, int _y){x+=_x; y+=_y;};
 	Point hasilGeser(int _x, int _y) const{
 		Point p(getX()+_x,getY()+_y);
 		return p;
 	};
-	Point hasilRotasi(float deltaDegree) const;
+	Point rotationResult(float deltaDegree) const;
 	Point hasilMirror00() const;
 };
 
