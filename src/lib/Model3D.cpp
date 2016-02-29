@@ -121,7 +121,7 @@ void Model3D::draw(Point3D eye){
 					if (intersectionmax<fsit->min){
 						i+=2;
 						//do nothing
-					}else if (intersectionmax<fsit->max){
+					}else if (intersectionmax<=fsit->max){
 						allocatedSegments.push_front(ScanlineSegment(fsit->min,intersectionmax,p.getTexture()));
 						fsit->min=intersectionmax+1;
 						i+=2;
@@ -129,8 +129,8 @@ void Model3D::draw(Point3D eye){
 						allocatedSegments.push_front(ScanlineSegment(fsit->min,fsit->max,p.getTexture()));
 						allocatedSegments.erase(fsit++);
 					}
-				}else if (intersectionmin<fsit->max){
-					if (intersectionmax<fsit->max){
+				}else if (intersectionmin<=fsit->max){
+					if (intersectionmax<=fsit->max){
 						allocatedSegments.push_front(ScanlineSegment(intersectionmin,intersectionmax,p.getTexture()));
 						freeSegment.insert(fsit,ScanlineSegment(fsit->min,intersectionmin-1,Texture()));
 						fsit->min=intersectionmax+1;
@@ -139,7 +139,6 @@ void Model3D::draw(Point3D eye){
 						fsit->max=intersectionmin-1;
 					}
 				}else{
-					allocatedSegments.push_front(ScanlineSegment(intersectionmin, intersectionmax, p.getTexture()));
 					i+=2;
 				}
 			}
