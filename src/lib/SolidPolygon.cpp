@@ -122,6 +122,10 @@ Point computeIntersectionWithYline(Point p1, Point p2, int y){
 	return Point(x,y);
 }
 
+const Texture& SolidPolygon::getTexture() const{
+	return texture;
+}
+
 //COHEN-SUTHERLAND?????
 //https://en.wikipedia.org/wiki/Sutherland%E2%80%93Hodgman_algorithm
 //dipermudah hahaha

@@ -24,6 +24,8 @@ class SolidPolygon: public std::vector<Point>{
 
 	void draw();
 
+	const Texture& getTexture() const;
+
 	SolidPolygon clip(Point min, Point max);
 
 	private:
