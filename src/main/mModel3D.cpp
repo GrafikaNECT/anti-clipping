@@ -35,8 +35,9 @@ int main(){
 	Point3D eye(8,8,20);
 	//test gambar	
 	Printer::drawCanvas(0,0,0,255);
-	model3D.orderSolidPolygon();
-	model3D.draw(eye);
+	std::vector<SolidPolygon3D> orderedSolidPolygon3D(model3D.orderSolidPolygon());
+	Model3D orderedModel3D(orderedSolidPolygon3D);
+	orderedModel3D.draw(eye);
 	Printer::printToScreen();
 	sleep(2);
 
@@ -46,8 +47,9 @@ int main(){
 			std::cout<<"test rotasi axis " << axis << " sudut " << i << std::endl;
 			Model3D hasilRotasi = model3D.rotationResult(i,axis);
 			Printer::drawCanvas(0,0,0,255);
-			hasilRotasi.orderSolidPolygon();
-			hasilRotasi.draw(eye);
+			orderedSolidPolygon3D = hasilRotasi.orderSolidPolygon();
+			Model3D orderedModel3D(orderedSolidPolygon3D);
+			orderedModel3D.draw(eye);
 			Printer::printToScreen();
 			usleep(1);
 		}
