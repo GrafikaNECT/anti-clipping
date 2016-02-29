@@ -1,5 +1,5 @@
-bin/main: bin src/lib/Printer.cpp src/lib/Line.cpp src/lib/Point.cpp src/lib/Texture.cpp src/lib/SolidPolygon.cpp src/main/mAntiClipping.cpp
-	g++ -o bin/mAntiClipping src/lib/Printer.cpp src/lib/Line.cpp src/lib/Point.cpp src/lib/Texture.cpp src/lib/SolidPolygon.cpp src/main/mAntiClipping.cpp -fpermissive
+bin/main: bin src/lib/*.cpp src/include/*.h src/main/mAntiClipping.cpp
+	g++ -o bin/mAntiClipping src/lib/*.cpp src/main/mAntiClipping.cpp -fpermissive -w
 
 bin:
 	mkdir -p bin
