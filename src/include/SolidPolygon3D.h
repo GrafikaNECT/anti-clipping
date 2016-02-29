@@ -4,6 +4,7 @@
 #include <vector>
 #include "Point3D.h"
 #include "Texture.h"
+#include "SolidPolygon.h"
 
 class SolidPolygon3D: public std::vector<Point3D>{
 	public:
@@ -19,6 +20,7 @@ class SolidPolygon3D: public std::vector<Point3D>{
 	SolidPolygon3D scaleResult(float scaleX, float scaleY, float scaleZ);
 	SolidPolygon3D rotationResult(float deltaDegree, char axis);
 	SolidPolygon3D rotationResult(float deltaDegree, Point3D poros, char axis);
+	SolidPolygon projectionResult(Point3D eye);
 
 	void push_back(int x, int y, int z); 
 	void push_back(const Point3D& p){std::vector<Point3D>::push_back(p);};

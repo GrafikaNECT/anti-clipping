@@ -1,6 +1,7 @@
 #include "../include/SolidPolygon3D.h"
 #include "../include/Line.h"
-#include "../include/Printer.h" 
+#include "../include/Printer.h"
+#include "../include/SolidPolygon.h" 
 
 #include <algorithm>
 
@@ -63,6 +64,12 @@ SolidPolygon3D SolidPolygon3D::scaleResult(float scaleX, float scaleY, float sca
 	return retval;
 }
 
+void SolidPolygon3D::rotate(float deltaDegree, char axis) {
+}
+
+void SolidPolygon3D::rotate(float deltaDegree, Point3D poros, char axis) {
+}
+
 SolidPolygon3D SolidPolygon3D::rotationResult(float deltaDegree, char axis){
 	SolidPolygon3D retval(std::vector<Point3D>::size(),texture);
 	for (int i=0;i<std::vector<Point3D>::size();i++){
@@ -76,4 +83,13 @@ SolidPolygon3D SolidPolygon3D::rotationResult(float deltaDegree, Point3D poros, 
 	SolidPolygon3D tmp1 = moveResult(poros.mirrorResult(axis));
 	SolidPolygon3D tmp2 = tmp1.rotationResult(deltaDegree, axis);
 	return tmp2.moveResult(poros);
+}
+
+SolidPolygon SolidPolygon3D::projectionResult(Point3D eye) {
+	SolidPolygon retval(texture);
+	for (int i=0;i<std::vector<Point3D>::size();i++){
+		const Point3D& p = at(i);
+		retval.push_back(p.projectionResult(eye));
+	}
+	return retval;
 }
