@@ -25,7 +25,7 @@ bool SolidPolygon3D::operator<( const SolidPolygon3D& val ) const {
 			maxval = val.at(i).getZ();
 		}
 	}
-	return maxthis < maxval;
+	return maxthis > maxval;
 }
 
 SolidPolygon3D SolidPolygon3D::moveResult(Point3D delta){
