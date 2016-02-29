@@ -139,6 +139,7 @@ void Model3D::draw(Point3D eye){
 						fsit->max=intersectionmin-1;
 					}
 				}else{
+					allocatedSegments.push_front(ScanlineSegment(intersectionmin, intersectionmax, p.getTexture()));
 					i+=2;
 				}
 			}
