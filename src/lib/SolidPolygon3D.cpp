@@ -80,7 +80,7 @@ SolidPolygon3D SolidPolygon3D::rotationResult(float deltaDegree, char axis){
 }
 
 SolidPolygon3D SolidPolygon3D::rotationResult(float deltaDegree, Point3D poros, char axis){
-	SolidPolygon3D tmp1 = moveResult(poros.mirrorResult(axis));
+	SolidPolygon3D tmp1 = moveResult(poros.mirrorResult());
 	SolidPolygon3D tmp2 = tmp1.rotationResult(deltaDegree, axis);
 	return tmp2.moveResult(poros);
 }
