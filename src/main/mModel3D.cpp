@@ -55,5 +55,20 @@ int main(){
 		}
 	}
 
+	//test rotasi terhadap poros
+	Point3D poros(100,70,10);
+	for (char axis = 'x';axis<='z';axis++){
+		for (int i=0;i<360;i++){
+			std::cout<<"test rotasi axis " << axis << " sudut " << i << std::endl;
+			Model3D hasilRotasi = model3D.rotationResult(i,poros,axis);
+			Printer::drawCanvas(0,0,0,255);
+			orderedSolidPolygon3D = hasilRotasi.orderSolidPolygon();
+			Model3D orderedModel3D(orderedSolidPolygon3D);
+			orderedModel3D.draw(eye);
+			Printer::printToScreen();
+			usleep(1);
+		}
+	}
+
 	Printer::finishPrinter();
 }
