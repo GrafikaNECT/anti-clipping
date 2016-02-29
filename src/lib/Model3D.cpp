@@ -1,4 +1,5 @@
 #include "../include/Model3D.h"
+#include <algorithm>
 
 void Model3D::rotate(float deltaDegree, char axis) {
 
@@ -11,7 +12,7 @@ void Model3D::rotate(float deltaDegree, Point3D poros, char axis) {
 
 Model3D Model3D::rotationResult(float deltaDegree, char axis){
 	Model3D retval=*this;
-	for (int i=0;i<std::vector<Point3D>::size();i++){
+	for (int i=0;i<std::vector<SolidPolygon3D>::size();i++){
 		const SolidPolygon3D& s = at(i);
 		retval[i]=s.rotationResult(deltaDegree, axis);
 	}
@@ -20,7 +21,7 @@ Model3D Model3D::rotationResult(float deltaDegree, char axis){
 
 Model3D Model3D::rotationResult(float deltaDegree, Point3D poros, char axis){
 	Model3D retval=*this;
-	for (int i=0;i<std::vector<Point3D>::size();i++){
+	for (int i=0;i<std::vector<SolidPolygon3D>::size();i++){
 		const SolidPolygon3D& s = at(i);
 		retval[i]=s.rotationResult(deltaDegree, poros, axis);
 	}

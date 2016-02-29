@@ -8,7 +8,7 @@
 
 class Model3D: public std::vector<SolidPolygon3D>{
 	public:
-	Model3D(std::vector<SolidPolygon3D>& vec):std::vector<SolidPolygon3D>(vector){};
+	Model3D(std::vector<SolidPolygon3D>& vec):std::vector<SolidPolygon3D>(vec){};
 	//Model3D hasilGeser(Point3D delta);
 	//Model3D hasilGeser(int deltax, int deltay, int deltaz);
 	//Model3D hasilPerbesar(float scale);
