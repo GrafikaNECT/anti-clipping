@@ -64,11 +64,11 @@ SolidPolygon3D SolidPolygon3D::scaleResult(float scaleX, float scaleY, float sca
 	return retval;
 }
 
-void SolidPolygon3D::rotate(float deltaDegree, char axis) {
-}
-
-void SolidPolygon3D::rotate(float deltaDegree, Point3D poros, char axis) {
-}
+//void SolidPolygon3D::rotate(float deltaDegree, char axis) {
+//}
+//
+//void SolidPolygon3D::rotate(float deltaDegree, Point3D poros, char axis) {
+//}
 
 SolidPolygon3D SolidPolygon3D::rotationResult(float deltaDegree, char axis){
 	SolidPolygon3D retval(std::vector<Point3D>::size(),texture);
