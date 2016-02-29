@@ -14,7 +14,7 @@ int main() {
 	
 	
 	Point3D centerpoint(400,400,400);
-	Point3D eye(400,400,-1000);
+	Point3D eye(400,400,1000);
 
 	float rotateDegX = 0;
 	float rotateDegY = 0;
