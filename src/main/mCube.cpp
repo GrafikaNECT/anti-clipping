@@ -21,7 +21,7 @@ int main(){
 
 
 	//gambar
-	Point3D eye (400,400,1000);
+	Point3D eye (400,400,-1000);
 
 	Printer::initializePrinter();
 
